@@ -31,6 +31,24 @@
       width: 100%;
       bottom: 0;
     }
+    .audio-controls {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .audio-controls button {
+      background: white;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -44,10 +62,32 @@
     <p>© 2024 Hama1alt</p>
   </footer>
   
-  <!-- Add background audio -->
-  <audio autoplay loop>
+  <!-- Hidden audio element -->
+  <audio id="background-audio" loop>
     <source src="music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+
+  <!-- Audio controls -->
+  <div class="audio-controls">
+    <button id="play-button">Play Music</button>
+  </div>
+
+  <script>
+    // Select audio and button elements
+    const audio = document.getElementById('background-audio');
+    const playButton = document.getElementById('play-button');
+
+    // Add click event to the button
+    playButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playButton.textContent = 'Pause Music';
+      } else {
+        audio.pause();
+        playButton.textContent = 'Play Music';
+      }
+    });
+  </script>
 </body>
 </html>
